@@ -1,39 +1,60 @@
+import { useState, useEffect } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Counter from "./components/Counter";
+import Photo from "./components/photo";  // Assuming you have a Photo component
 
-      import { useState } from 'react';
-      import reactLogo from './assets/react.svg';
-      import viteLogo from '/vite.svg';
-      import './App.css';
+function App() {
+  const [count, setCount] = useState(0);  // Counter state
+  const [photos, setPhotos] = useState([]); // Photos state
 
-      function App() {
-        const [count, setCount] = useState(0);
-
-        function updateCount() {
-          setCount(count + 1);
-        }
-
-        const dados = {
-          nome: "fulano",
-          atualiza: (novo_nome) => `novo nome é ${novo_nome}`,
-          endereco: {
-            rua: "xyz",
-            numero: 111,
-            complemento: ["casa", "na esquina do supermercado ABC"]
-          }
-        };
-
-        return (
-          <div className="App">
-            <header className="App-header">
-              <img src={viteLogo} className="logo" alt="Vite logo" />
-              <img src={reactLogo} className="logo react" alt="React logo" />
-              <h1>React Exemplos</h1>
-              <p>O nome atualizado: {dados.atualiza("Gerson")}</p>
-              <p>Endereço: {dados.endereco.rua}, {dados.endereco.numero} - {dados.endereco.complemento[1]}</p>
-              <button onClick={updateCount}>Clique aqui</button>
-              <p>Contador: {count}</p>
-            </header>
-          </div>
-        );
+  const fetchPhotos = async () => {
+    try {
+      const url = 'https://jsonplaceholder.typicode.com/albums/1/photos';
+      const response = await fetch(url);
+      if (response.status === 200) {
+        const data = await response.json();
+        // Update photos data with thumbnailUrl
+        const updatedData = data.map((photo) => ({
+          ...photo,
+          thumbnailUrl: `https://picsum.photos/300?random=${photo.id}`,
+        }));
+        setPhotos(updatedData);
       }
+    } catch (error) {
+      console.error('Erro na busca', error);
+    }
+  };
 
-      export default App;
+  // Fetch photos once when component mounts
+  useEffect(() => {
+    fetchPhotos();
+  }, []); // Empty dependency array ensures this runs only once
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={reactLogo} alt="React logo" />
+        <img src={viteLogo} alt="Vite logo" />
+        <h1>Meu álbum</h1>
+      </header>
+      
+      {/* Counter Component */}
+      <Counter title="Contador" initial={count} />
+
+      {/* Photos Gallery */}
+      <div className="photo-gallery">
+        {photos.length === 0 ? (
+          <p>Carregando fotos...</p> // Display a loading message while photos are being fetched
+        ) : (
+          photos.map((photo) => (
+            <Photo key={photo.id} photo={photo} />
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default App;
