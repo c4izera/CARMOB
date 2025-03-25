@@ -1,13 +1,12 @@
 import React from "react";
 
-const Photo = ({ photo }) => {
-  return (
-    <div className="photo">
-      <img src={photo.thumbnailUrl} alt={photo.title} />
-      <h3>{photo.title}</h3>
-      <p>ID #{photo.id}</p>
-    </div>
-  );
-};
+const Photo = ( {photo}) => {
+    return (
+        <>
+        <img src={photo.thumbnailUrl} alt={photo.title} />
+        <h2>ID #{photo.id} {photo.title}</h2>
+        </>
+    )
+}
 
 export default Photo;

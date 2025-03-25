@@ -3,57 +3,55 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Counter from "./components/Counter";
-import Photo from "./components/photo";  // Assuming you have a Photo component
+import Photo from "./components/photo";
+import Album from "./components/album";
+import TodoList from "./components/TodoList";
 
 function App() {
-  const [count, setCount] = useState(0);  // Counter state
-  const [photos, setPhotos] = useState([]); // Photos state
+  const [count, setCount] = useState(0);
+  const [photos, setPhotos] = useState([]);
+  const [albumId, setAlbumId] = useState(1);
 
   const fetchPhotos = async () => {
     try {
-      const url = 'https://jsonplaceholder.typicode.com/albums/1/photos';
+      const url = `https://jsonplaceholder.typicode.com/albums/${albumId}/photos`;
       const response = await fetch(url);
       if (response.status === 200) {
         const data = await response.json();
-        // Update photos data with thumbnailUrl
-        const updatedData = data.map((photo) => ({
+        const updatedPhotos = data.map((photo) => ({
           ...photo,
           thumbnailUrl: `https://picsum.photos/300?random=${photo.id}`,
         }));
-        setPhotos(updatedData);
+        setPhotos(updatedPhotos);
       }
     } catch (error) {
       console.error('Erro na busca', error);
     }
   };
 
-  // Fetch photos once when component mounts
   useEffect(() => {
     fetchPhotos();
-  }, []); // Empty dependency array ensures this runs only once
+  }, [albumId]); // Agora, sempre que o `albumId` mudar, a função `fetchPhotos` será chamada novamente.
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={reactLogo} alt="React logo" />
-        <img src={viteLogo} alt="Vite logo" />
+    <>
+      <TodoList name="CARDMOB"/>
+      <Counter title="Contando..."/>
+      <Counter initial="100"/>
+      {/* <article>
         <h1>Meu álbum</h1>
-      </header>
-      
-      {/* Counter Component */}
-      <Counter title="Contador" initial={count} />
-
-      {/* Photos Gallery */}
-      <div className="photo-gallery">
-        {photos.length === 0 ? (
-          <p>Carregando fotos...</p> // Display a loading message while photos are being fetched
-        ) : (
-          photos.map((photo) => (
-            <Photo key={photo.id} photo={photo} />
-          ))
-        )}
+        {photos.map((photo) => (
+          <Photo key={photo.id} photo={photo} />
+        ))}
+      </article> */}
+      <div>
+        <button onClick={() => setAlbumId(1)}>Album #1</button>
+        <button onClick={() => setAlbumId(2)}>Album #2</button>
+        <button onClick={() => setAlbumId(3)}>Album #3</button>
+        <button onClick={() => setAlbumId(4)}>Album #4</button>
       </div>
-    </div>
+      <Album albumId={albumId} />
+    </>
   );
 }
 
