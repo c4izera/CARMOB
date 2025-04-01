@@ -1,0 +1,56 @@
+/* Centralizar o conteúdo da página */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000000; /* Cor de fundo clara */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo do container principal */
+div {
+    text-align: center;
+    background-color: #ffffff; /* Fundo branco */
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Botões */
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:nth-child(1) {
+    background-color: #4caf50; /* Verde */
+    color: white;
+}
+
+button:nth-child(2) {
+    background-color: #f44336; /* Vermelho */
+    color: white;
+}
+
+/* Inputs */
+input {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: calc(100% - 22px);
+    max-width: 300px;
+}
