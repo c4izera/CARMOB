@@ -1,0 +1,36 @@
+/* Estilo global */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Fundo azul claro */
+    text-align: center;
+}
+
+/* Estilo do título principal */
+h1 {
+    color: #333; /* Cor do texto */
+    margin: 20px 0;
+}
+
+/* Estilo geral dos botões */
+button {
+    background-color: #4caf50; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: opacity 0.3s ease; /* Transição suave no hover */
+}
+
+/* Efeito ao passar o mouse nos botões */
+button:hover {
+    opacity: 0.9;
+}
+
+/* Estilo para botões de exclusão */
+button.delete {
+    background-color: #f44336; /* Vermelho */
+}
