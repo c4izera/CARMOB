@@ -3,26 +3,13 @@
     {
       "id": "1e86",
       "text": "Novo item"
-    },
+    }
+  ],
+  "compras": [
     {
-      "id": "185e",
-      "text": "Leite"
-    },
-    {
-      "id": "a2a6",
-      "text": "Farinha"
-    },
-    {
-      "id": "bccf",
-      "text": "Novo item"
-    },
-    {
-      "id": "815c",
-      "text": "Novo item"
-    },
-    {
-      "id": "1859",
-      "text": "Arroz"
+      "id": "bcaf",
+      "item": "Leite",
+      "quantidade": 3
     }
   ]
 }
