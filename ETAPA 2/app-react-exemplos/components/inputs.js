@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Text, View, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 class Inputs extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
     }
     handleEmail = (text) => {
         this.setState({email: text});
@@ -13,57 +13,55 @@ class Inputs extends Component {
         this.setState({password: text});
     }
     login = (email, pass) => {
-        alert(`email: ${email} \npassword: ${pass}`);
+        alert(`email: ${email} \npassord: ${pass}`);
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <TextInput 
+                <TextInput
                     style={styles.input}
                     underlineColorAndroid="transparent"
                     placeholder="Email"
-                    autoCapitalize="none"
+                    autoCapitalize='none'
                     onChangeText={this.handleEmail}
                 />
-                <TextInput 
+                <TextInput
                     style={styles.input}
                     underlineColorAndroid="transparent"
-                    placeholder="Password"
-                    placeholderTextColor="#9a73ef"
-                    autoCapitalize="none"
+                    placeholder='password'
+                    placeholderTextColor={'#9a73ef'}
+                    autoCapitalize='none'
                     secureTextEntry
                     onChangeText={this.handlePassword}
                 />
-                <TouchableOpacity 
-                    style={styles.submitButton}
-                    onPress={
-                        () => this.login(
-                            this.state.email,
-                            this.state.password
-                        )
-                    }
+                <TouchableOpacity
+                    style={styles.submmitButton}
+                    onPress={() => this.login(this.state.email, this.state.password)}
                 >
                     <Text style={styles.submitButtonText}>
                         Submit
                     </Text>
+
                 </TouchableOpacity>
             </View>
         )
+       
     }
 }
 
 export default Inputs;
 
-const styles = StyleSheet.create({
+const styles=StyleSheet.create({
     container: {
-        paddingTop: 24
+        paddingTop: 24,
     },
     input: {
         margin: 15,
         height: 40,
         borderColor: '#7a42f4',
         borderWidth: 1,
+        width: 80,
     },
     submitButton: {
         backgroundColor: '#7a42f4',
@@ -72,6 +70,6 @@ const styles = StyleSheet.create({
         height: 40,
     },
     submitButtonText: {
-        color: 'white'
+        color: 'white',
     }
 });

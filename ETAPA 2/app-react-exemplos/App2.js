@@ -7,19 +7,19 @@ import List from './components/List';
 export default function App() {
  
   return (
-    <View style={styles.container}>
-      <List />
+    <view style={styles.container}>
       <View style={styles.redbox}></View>
       <View style={styles.bluebox}></View>
       <View style={styles.blackbox}></View>
-    </View>
+      <List/>
+    </view>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'gray',
     height: 600,
@@ -29,16 +29,17 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     backgroundColor: 'red',
-    borderRadius: 50,
+    borderRadius: 5,
   },
   bluebox: {
     width: 100,
     height: 100,
-    backgroundColor: 'blue',
+    backgroundColor: 'blue',  
   },
   blackbox: {
     width: 100,
     height: 100,
     backgroundColor: 'black',
-  }
+  },
+
 });

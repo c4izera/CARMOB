@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "id": "bcaf",
+      "item": "Leite"
+    }
+  ],
+  "compras": [
+    {
+      "item": "saco",
+      "quantidade": 8,
+      "id": "54b6"
+    },
+    {
+      "id": "ce75",
+      "item": "Rrrr",
+      "quantidade": 4
+    },
+    {
+      "id": "9bf8",
+      "item": "Gesff",
+      "quantidade": 222
+    },
+    {
+      "id": "290c",
+      "items": "frango",
+      "quantidade": 2
+    },
+    {
+      "id": "bb11",
+      "items": "frango",
+      "quantidade": 2
+    }
+  ]
+}
