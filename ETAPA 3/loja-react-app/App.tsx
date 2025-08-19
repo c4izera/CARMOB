@@ -8,8 +8,7 @@ import RootNavigator from './src/navigation/RootNavigator';
 export default function App() {
   return (
     <ThemeProvider>
-      <HomeScreen />
-      <RootNavigator />
+    <RootNavigator />
     </ThemeProvider>
   );
 }
