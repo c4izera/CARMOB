@@ -1,32 +1,28 @@
 import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RootStackParamList, TabParamList } from './types';
-import { ActivityIndicator, View } from 'react-native';
 
-// Telas do app.
+// Telas do app - área não logada.
 import HomeScreen from "../screens/HomeScreen";
+// importar depois que implementar: DetailsScreen, SettingsScreen
 import RegisterScreen from "../screens/RegisterScreen";
 import LoginScreen from "../screens/LoginScreen";
-import AuthNavigator from "./AuthNavigator";
-import { useAuth } from "../contexts/AuthContext";
 
 const AppStack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
 
-// Tabs principais
 function TabNavigator() {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen}/>
-      <Tab.Screen name="Register" component={RegisterScreen} />
-    </Tab.Navigator>
-  );
+    return (
+        <Tab.Navigator>
+            <Tab.Screen name="Home" component={HomeScreen}/>
+            <Tab.Screen name="Settings" component={HomeScreen} />
+            <Tab.Screen name="Register" component={RegisterScreen} />
+        </Tab.Navigator>
+    );
 }
 
-// Stack principal
-function AppNavigator() {
+function StackNavigator() {
   return (
     <AppStack.Navigator>
       <AppStack.Screen
@@ -48,21 +44,8 @@ function AppNavigator() {
   );
 }
 
-// Root decide se mostra login ou área autenticada
-export default function RootNavigator() {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
-
+export default function AppNavigator() {
   return (
-    <NavigationContainer>
-      { user ? <AuthNavigator /> : <AppNavigator /> }
-    </NavigationContainer>
+    <StackNavigator />
   );
-}
+};
