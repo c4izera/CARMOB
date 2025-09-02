@@ -1,5 +1,5 @@
-import React, { use, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Text} from "react-native";
+import React, { useState } from "react";
+import { View, TextInput, Button, StyleSheet, Text, SafeAreaView } from "react-native";
 
 import { fakeLogin } from "../services/authService";
 import { useAuth } from "../contexts/AuthContext";
@@ -22,34 +22,29 @@ export default function LoginScreen({ navigation }: any) {
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+          <View>
             <Text>Email:</Text>
             <TextInput 
-                style={styles.input}
-                value={email}
-                onChangeText={setEmail}
-                autoCapitalize="none"
+              style={styles.input}
+              value={email}
+              onChangeText={setEmail}
+              autoCapitalize="none"
             />
             <Text>Senha:</Text>
             <TextInput 
-                style={styles.input}
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
+              style={styles.input}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
             />
-            { error ? 
-                <Text 
-                    style={{ color: 'red'}}
-                >
-                {error}
-                </Text> :
-                null
-            }
+            {error ? <Text style={{ color: 'red'}}>{error}</Text> : null}
+      
             <Button title="Entrar" onPress={handleLogin} />
-            <Button title="Registrar" onPress={ () => navigation.navigate('Register') }/>
-
-       </View>
-    );
+            <Button title="Registrar" onPress={() => navigation.navigate('Register')} />
+          </View>
+        </SafeAreaView>
+      );
 }
 
 const styles = StyleSheet.create({
@@ -64,4 +59,4 @@ const styles = StyleSheet.create({
         padding: 8,
         marginBottom: 12,
     }
-});
+});       
