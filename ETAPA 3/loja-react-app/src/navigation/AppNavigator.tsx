@@ -22,11 +22,7 @@ function TabNavigator() {
 
           if (route.name === "Home") {
             iconName = "home";
-          } else if (route.name === "Settings") {
-            iconName = "cog";
-          } else if (route.name === "Register") {
-            iconName = "user-plus";
-          }
+          } 
 
           return <FontAwesome name={iconName} size={size} color={color} />;
         },
