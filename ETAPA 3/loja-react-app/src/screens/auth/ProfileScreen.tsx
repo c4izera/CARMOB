@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
-import { useTheme } from '../contexts/ThemeContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../../contexts/ThemeContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 function ProfileScreen({ navigation }: any) {
     const { theme, toggleTheme } = useTheme();

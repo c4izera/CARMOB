@@ -6,7 +6,7 @@ import { AuthStackParamList, AuthTabParamList } from './types';
 // Telas do app - área logada.
 import HomeScreen from "../screens/HomeScreen";
 // importar depois que implementar: DetailsScreen, SettingsScreen
-import ProfileScreen from "../screens/ProfileScreen";
+import ProfileScreen from "../screens/auth/ProfileScreen";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 const Tab = createBottomTabNavigator<AuthTabParamList>();
