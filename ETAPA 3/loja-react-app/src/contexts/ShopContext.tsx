@@ -2,41 +2,45 @@ import React, { createContext, useContext, useState } from "react";
 
 type ShopContextType = {
     cartItems: any[];
-    addToCart: (item: any) => Promise<void>;
+    addToCart: (item: any, quantity?: number) => Promise<void>;
+    removeFromCart: (itemId: number) => void;
 };
 
 export const ShopContext = createContext<ShopContextType>({} as ShopContextType);
 
-export const ShopProvider: React.FC<{ children: React.ReactNode}> = ({ children}) => {
+export const ShopProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [cartItems, setCartItems] = useState<any[]>([]);
 
     const addToCart = async (item: any, quantity: number = 1) => {
-        setCartItems(prevItems => {
-                const existingIndex = prevItems.findIndex(
-                    cartItem => cartItem.id === item.id
-                );
-                if (existingIndex >= 0) {
-                    const updatedItems = [...prevItems];
-                    if (updatedItems[existingIndex].quantity + quantity > 0) {
-                        updatedItems[existingIndex].quantity += quantity;
-                    }
-                    return updatedItems;
+        setCartItems((prevItems) => {
+            const existingIndex = prevItems.findIndex(
+                (cartItem) => cartItem.id === item.id
+            );
+            if (existingIndex >= 0) {
+                const updatedItems = [...prevItems];
+                if (updatedItems[existingIndex].quantity + quantity > 0) {
+                    updatedItems[existingIndex].quantity += quantity;
                 }
-                else {
-                    return [...prevItems, {...item, quantity}];
-                }
-
+                return updatedItems;
+            } else {
+                return [...prevItems, { ...item, quantity }];
             }
-        )
-    }
+        });
+    };
+
+    const removeFromCart = (itemId: number) => {
+        setCartItems((prevItems) =>
+            prevItems.filter((item) => item.id !== itemId)
+        );
+    };
 
     return (
-        <ShopContext
-            value={ { cartItems, addToCart } }
+        <ShopContext.Provider
+            value={{ cartItems, addToCart, removeFromCart }}
         >
             {children}
-        </ShopContext>
+        </ShopContext.Provider>
     );
-}
+};
 
 export const useShop = () => useContext(ShopContext);
